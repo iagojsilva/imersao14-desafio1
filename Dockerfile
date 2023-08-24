@@ -1,0 +1,12 @@
+FROM node:18.16.1-alpine
+
+WORKDIR /var/www
+
+COPY . .
+
+RUN npm ci
+
+RUN npm run build
+
+CMD ["node", "dist/main.js"]
+
