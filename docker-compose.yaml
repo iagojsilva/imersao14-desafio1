@@ -3,3 +3,7 @@ services:
     build: .
     ports:
       - 3000:3000
+  mongodb:
+    image: bitnami/mongodb:5.0.17
+    ports:
+      - 27017:27017
