@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { RouterService } from './router.service';
 import { Route } from '@prisma/client';
 
@@ -13,7 +13,7 @@ export class RouterController {
   }
 
   @Post()
-  async createOne(route: Route) {
+  async createOne(@Body() route: Route) {
     const createdRoute = await this.routerService.createOne(route);
     return createdRoute;
   }
