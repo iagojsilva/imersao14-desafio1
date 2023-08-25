@@ -1,10 +1,8 @@
 FROM mongo:6 as base
 
-COPY ./init-mongodbs.sh ./init-replica.sh ./entry-point.sh /
+COPY ./entry-point.sh /
 
-RUN chmod +x /init-mongodbs.sh && \
-    chmod +x /init-replica.sh && \
-    chmod +x /entry-point.sh
+RUN chmod +x /entry-point.sh
 
 # Data directory
 ARG DB1_DATA_DIR=/var/lib/mongo1
