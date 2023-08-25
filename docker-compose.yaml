@@ -1,9 +1,24 @@
 services:
-  web:
-    build: .
-    ports:
-      - 3000:3000
-  mongodb:
-    image: bitnami/mongodb:5.0.17
+  mongors:
+    container_name: mongors
+    volumes:
+      - mongodb_data:/bitnami/mongodb
+    build:
+      context: .
+      dockerfile: Dockerfile.mongors
     ports:
       - 27017:27017
+
+  web:
+    depends_on:
+      mongors:
+        condition: service_started
+    container_name: web
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - 3000:3000
+volumes:
+  mongodb_data:
+    driver: local
